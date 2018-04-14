@@ -1,0 +1,59 @@
+
+Blatt 4 - Aufgabe 1
+===================
+
+Im Folgenden der Pseudocode wie mit E-Kreide in der Vorlesung vorgestellt:
+
+Pseudocode Mergesort
+--------------------
+
+
+MergeSort(Array A,p,r)       // Sortiere A von index p bis r
+    if p < r then
+        q <- floor((p+r)/2)  // Mitte mit Abrunden finden
+        MergeSort(A, p, q)   // Linke Seite sortieren
+        MergeSort(A, q+1, r) // Rechte Seite sortieren
+        Merge(A, p, q, r)    // Seiten Zusammenführen
+
+
+
+Merge(A,p,q,r)
+
+    B = Array(r-p+1)           // Hilfsarray zum Mergen
+                             // Länge r-p
+
+    k <- p                   // Hilfsvariable für linke Seite
+    m <- q + 1               // Hilfsvariable für rechte Seite
+    i <- 1                   // Laufvariable für gemergtes Array
+
+
+    // Solange Einträge in beiden Seiten vorhanden sind
+    while ( k <= q ) and ( m <= r)
+
+        if A[k] <= A[m] then // Eintrag auf linker Seite kleiner oder gleich
+            B[i] = A[k]
+            k <- k+1
+        else                 // Eintrag auf rechter Seite kleiner
+            B[i] = A[m]
+            m <- m+1
+
+        i <- i+1             // Erhöhen der Laufvariable des gemergten Arrays
+
+
+    while ( k <= q )         // Kopiere linken "Rest"
+        B[i] = A[k]
+        k <- k+1
+        i <- i+1
+
+    while ( m <= r )       // Kopiere rechten "Rest"
+        B[i] = A[m]
+        m <- m+1
+        i <- i+1
+
+    j <- 1                 // Rückkopieren der gemergten Einträge
+
+    while ( j < i )
+        A[p + j - 1] = B[j]  // Hinweis: j ist mit 1 initialisiert
+        j <- j+1
+
+
